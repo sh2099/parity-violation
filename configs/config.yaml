@@ -1,0 +1,13 @@
+defaults:
+  - data: data
+
+logging:
+  level: INFO
+
+data:
+  fits_file: "path/to/data.fits"
+  sample_size: 700000
+  random_seed: 42
+  z_range:
+    min: 0.43
+    max: 0.70
