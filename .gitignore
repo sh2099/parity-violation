@@ -1,6 +1,6 @@
 # Ignore everything in data/, except keep the folder itself
 /data/*
-/data/.gitkeep
+!/data/.gitkeep
 
 # Ignore everything in .hydra 
 /.hydra/*
