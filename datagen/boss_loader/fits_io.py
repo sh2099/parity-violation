@@ -6,6 +6,9 @@ from astropy.io import fits
 from astropy.coordinates import SkyCoord, ICRS
 import astropy.units as u
 
+
+# TODO: Fix decision logic about random and sample size
+
 logger = logging.getLogger(__name__)
 
 def import_data(
