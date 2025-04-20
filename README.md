@@ -34,6 +34,4 @@ pip install -e .                           # install as an editable package
 
 #### Install using Pip
 
-```bash
-pip install -r requirements.txt -e .       # install requirements and package
-```
+Not sorted yet
