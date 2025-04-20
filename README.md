@@ -35,3 +35,13 @@ pip install -e .                           # install as an editable package
 #### Install using Pip
 
 Not sorted yet
+
+
+#### Access BOSS data
+
+The LSS data from the 12th BOSS data release can be found at https://data.sdss.org/sas/dr12/boss/lss/
+
+For now, I recommend saving any fits files into the data folder.
+
+Environment variables may be introduced later in construction.
+
