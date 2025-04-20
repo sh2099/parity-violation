@@ -2,24 +2,46 @@ import hydra
 from omegaconf import DictConfig
 import logging
 
-from fits_io import import_data
-from data_transforms import filter_by_redshift, normalize_redshift
+from datagen.boss_loader.fits_io import import_data
+from datagen.boss_loader.data_transforms import filter_by_redshift
+
+
+def prepare_boss_data(
+    fits_file: str,
+    sample_size: int,
+    random_seed: int,
+    z_min: float,
+    z_max: float,
+):
+    """
+    Load, sample, and redshift‐filter BOSS data in one go.
+    Returns: coords, redshift, weights
+    """
+    coords, z, w = import_data(
+        fits_file=fits_file,
+        sample_size=sample_size,
+        random_seed=random_seed,
+    )
+    coords, z, w = filter_by_redshift(
+        coords, z, w,
+        z_min=z_min,
+        z_max=z_max,
+    )
+    return coords, z, w
+
+
 
 logger = logging.getLogger(__name__)
 
 @hydra.main(config_path="../../configs/datagen", config_name="config")
 def main(cfg: DictConfig) -> None:
     logger.info("Starting BOSS data pipeline…")
-    coords, z, w = import_data(
+    coords, z, w = prepare_boss_data(
         fits_file=cfg.data.fits_file,
         sample_size=cfg.data.sample_size,
-        random_seed=cfg.data.random_seed
-    )
-
-    coords, z, w = filter_by_redshift(
-        coords, z, w,
+        random_seed=cfg.data.random_seed,
         z_min=cfg.data.z_range.min,
-        z_max=cfg.data.z_range.max
+        z_max=cfg.data.z_range.max,
     )
 
     #z_norm = normalize_redshift(z)
@@ -27,6 +49,7 @@ def main(cfg: DictConfig) -> None:
                 len(z), cfg.data.z_range.min, cfg.data.z_range.max)
 
     # (… further analysis, saving outputs, etc.)
+
 
 if __name__ == "__main__":
     main()
