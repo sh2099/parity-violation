@@ -1,0 +1,4 @@
+# Ignore everything in data/, except keep the folder itself
+/data/*
+!/data/.gitkeep   # optional: if you want to commit an empty folder
+
