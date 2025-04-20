@@ -1,4 +1,9 @@
+# configs/datagen/config.yaml
+version_base: 1.3         # ← tell Hydra which config schema version you’re targeting
+
 hydra:
+  job:
+    chdir: false
   run:
     dir: ${hydra:runtime.cwd}
 
