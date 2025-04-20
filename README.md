@@ -25,8 +25,6 @@ cd parity-violation
 #### Install using Conda/Mamba/Micromamba (recommended)
 
 For conda or mamba replace `micromamba` with `conda` or `mamba` below.
-If you want to create the environment with CPU support only, you can replace
-`environment.yaml` with `environment_cpu.yaml`.
 
 ```bash
 micromamba env create -f environment.yaml  # create mamba environment
