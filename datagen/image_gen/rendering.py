@@ -1,8 +1,10 @@
 import logging
-from typing import Tuple
+from typing import Tuple, List, Union
 
 import numpy as np
 import matplotlib.pyplot as plt
+from matplotlib.patches import Polygon as MplPolygon
+
 
 logger = logging.getLogger(__name__)
 
@@ -112,3 +114,59 @@ def create_image(
     plt.close(fig)
 
     return img_uint8, scale_factor
+
+
+
+def display_sample_dist(
+    ra: Union[np.ndarray, List[float]],
+    dec: Union[np.ndarray, List[float]],
+    train_squares: List[np.ndarray],
+    test_squares: List[np.ndarray],
+    output_path: str,
+    figsize: tuple = (9, 6),
+    dpi: int = 100
+) -> None:
+    """
+    Scatter all (ra, dec) points and overlay two sets of squares.
+
+    Parameters
+    ----------
+    ra : array‑like of shape (N,)
+        Right ascensions.
+    dec : array‑like of shape (N,)
+        Declinations.
+    train_squares : list of (4,2) ndarrays
+        List of vertex arrays for “train” squares (plotted in red).
+    test_squares : list of (4,2) ndarrays
+        List of vertex arrays for “test” squares (plotted in black).
+    output_path : str
+        Where to save the PNG (will auto‑create dirs if needed).
+    figsize : tuple
+        Figure size in inches.
+    dpi : int
+        Resolution of output PNG.
+    """
+    fig, ax = plt.subplots(figsize=figsize, dpi=dpi)
+
+    # Plot all data points
+    ax.scatter(ra, dec, color="green", s=0.01, marker="o", label="Galaxies")
+
+    # Overlay train squares in red
+    for sq in train_squares:
+        poly = MplPolygon(sq, edgecolor="r", fill=False, linewidth=1)
+        ax.add_patch(poly)
+    # Overlay test squares in black
+    for sq in test_squares:
+        poly = MplPolygon(sq, edgecolor="k", fill=False, linewidth=1)
+        ax.add_patch(poly)
+
+    ax.set_xlabel("RA (deg)")
+    ax.set_ylabel("DEC (deg)")
+    ax.legend(loc="upper right", fontsize="small")
+
+    # Ensure output directory exists
+    import os
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+
+    fig.savefig(output_path, bbox_inches="tight")
+    plt.close(fig)

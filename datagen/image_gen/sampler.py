@@ -24,6 +24,7 @@ def random_sampling_images(
     bw_mode: bool,
     output_dir: str,
     prefix: str,
+    existing_squares: List[np.ndarray] = None,
 ) -> Tuple[List[np.ndarray], List[float]]:
     """
     Sample non‑overlapping rotated squares and render each as an image.
@@ -75,7 +76,7 @@ def random_sampling_images(
 
         # 2) find a non‑overlapping square
         square = generate_non_overlapping_square(
-            ra, dec, centre, square_size, phi, existing_squares
+            ra, dec, centre, square_size, phi
         )
         existing_squares.append(square)
 

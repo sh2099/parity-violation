@@ -1,5 +1,6 @@
 defaults:
   - _self_
+
 data:
   fits_file: data/galaxy_DR12v5_CMASS_North.fits
   sample_size: 500000
@@ -7,15 +8,22 @@ data:
   z_range:
     min: 0.43
     max: 0.70
+
 images:
-  num_samples: 24
-  square_size: 0.1
+  num_test_samples: 24
+  num_train_samples: 96
+  square_size: 1
   img_size: 64
   bw_mode: false
   output_dir: all_images
   prefix: boss
+  viz:
+    enable: true
+    output_file: "plots/sample_distribution.png"
+
 logging:
   level: INFO
+
 version_base: 1.3
 hydra:
   job:

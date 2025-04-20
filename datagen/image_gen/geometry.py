@@ -94,7 +94,7 @@ def generate_non_overlapping_square(
     centre: np.ndarray,
     square_size: float,
     phi: float,
-    existing: List[np.ndarray]
+    existing: List[np.ndarray] = [],
 ) -> np.ndarray:
     """
     Randomly place a rotated square that doesn’t overlap any in `existing`.
