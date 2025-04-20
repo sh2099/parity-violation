@@ -1,5 +1,7 @@
 <div align="center">
+
 # Parity Violation
+
 [![python](https://img.shields.io/badge/-Python_3.11-blue?logo=python&logoColor=white)](https://github.com/pre-commit/pre-commit)
 [![pytorch](https://img.shields.io/badge/PyTorch_2.1-ee4c2c?logo=pytorch&logoColor=white)](https://pytorch.org/get-started/locally/)
 [![lightning](https://img.shields.io/badge/-Lightning_2.0+-792ee5?logo=pytorchlightning&logoColor=white)](https://pytorchlightning.ai/)
@@ -16,7 +18,7 @@ This repository contains the foundations of the code used for my Master's projec
 
 ```bash
 # clone project
-git clone git@github.com:sciai-lab/sciai-dft.git
+git clone git@github.com:sh2099/parity-violation.git
 cd parity-violation
 ```
 
