@@ -1,12 +1,16 @@
+hydra:
+  run:
+    dir: ${hydra:runtime.cwd}
+
 defaults:
-  - data: data
+  - __self__
 
 logging:
   level: INFO
 
 data:
   fits_file: "path/to/data.fits"
-  sample_size: 700000
+  sample_size: 600000
   random_seed: 42
   z_range:
     min: 0.43
