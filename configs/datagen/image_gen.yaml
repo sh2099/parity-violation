@@ -1,15 +1,15 @@
 defaults:
   - _self_
 data:
-  fits_file: ../data/…
+  fits_file: data/galaxy_DR12v5_CMASS_North.fits
   sample_size: 500000
   random_seed: 42
   z_range:
     min: 0.43
     max: 0.70
 images:
-  num_samples: 2400
-  square_size: 0.5
+  num_samples: 24
+  square_size: 0.1
   img_size: 64
   bw_mode: false
   output_dir: all_images
