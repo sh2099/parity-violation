@@ -69,6 +69,7 @@ def run(cfg: DictConfig) -> None:
         bw_mode=cfg.images.bw_mode,
         output_dir=out_dir,
         prefix=f"{cfg.images.prefix}_test_",
+        preexisting_squares=testing,
     )
     logger.info(
         "Finished: generated %d training images in %s",
