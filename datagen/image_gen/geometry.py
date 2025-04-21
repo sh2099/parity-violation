@@ -1,17 +1,15 @@
 import logging
-from typing import List, Tuple
+from typing import List
 
 import numpy as np
-from numpy.typing import ArrayLike
 from matplotlib.path import Path
+from numpy.typing import ArrayLike
 
 logger = logging.getLogger(__name__)
 
 
 def rotate_coordinates(
-    coords: np.ndarray,
-    centre: np.ndarray,
-    phi: float
+    coords: np.ndarray, centre: np.ndarray, phi: float
 ) -> np.ndarray:
     """
     Rotate points by angle phi around centre.
@@ -38,10 +36,7 @@ def rotate_coordinates(
     return rotated + centre
 
 
-def compute_overlap(
-    poly1: np.ndarray,
-    poly2: np.ndarray
-) -> bool:
+def compute_overlap(poly1: np.ndarray, poly2: np.ndarray) -> bool:
     """
     Quick AABB (axis‑aligned) overlap check for two convex quads.
 
@@ -63,9 +58,7 @@ def compute_overlap(
 
 
 def get_points_in_square(
-    ra: ArrayLike,
-    dec: ArrayLike,
-    square: np.ndarray
+    ra: ArrayLike, dec: ArrayLike, square: np.ndarray
 ) -> np.ndarray:
     """
     Return indices of points inside a polygon.
@@ -132,4 +125,4 @@ def generate_non_overlapping_square(
         # pick a new random centre & phi
         idx = np.random.randint(len(ra))
         centre[:] = [ra[idx], dec[idx]]
-        phi = np.random.uniform(0, 2*np.pi)
+        phi = np.random.uniform(0, 2 * np.pi)

@@ -1,10 +1,9 @@
 import logging
-from typing import Tuple, List, Union
+from typing import List, Tuple, Union
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 from matplotlib.patches import Polygon as MplPolygon
-
 
 logger = logging.getLogger(__name__)
 
@@ -35,7 +34,7 @@ def create_image(
     filename: str,
     sq_size: float,
     img_size: int = 64,
-    bw: bool = False
+    bw: bool = False,
 ) -> Tuple[np.ndarray, float]:
     """
     Render a weighted point cloud into a pseudo-RGB image and save to disk.
@@ -107,14 +106,13 @@ def create_image(
 
     # Render and save
     fig, ax = plt.subplots(figsize=(img_size, img_size), dpi=1)
-    ax.imshow(img_uint8, interpolation='nearest')
-    ax.axis('off')
+    ax.imshow(img_uint8, interpolation="nearest")
+    ax.axis("off")
     plt.subplots_adjust(left=0, right=1, top=1, bottom=0)
-    fig.savefig(filename, bbox_inches='tight', pad_inches=0)
+    fig.savefig(filename, bbox_inches="tight", pad_inches=0)
     plt.close(fig)
 
     return img_uint8, scale_factor
-
 
 
 def display_sample_dist(
@@ -124,7 +122,7 @@ def display_sample_dist(
     test_squares: List[np.ndarray],
     output_path: str,
     figsize: tuple = (9, 6),
-    dpi: int = 100
+    dpi: int = 100,
 ) -> None:
     """
     Scatter all (ra, dec) points and overlay two sets of squares.
@@ -166,6 +164,7 @@ def display_sample_dist(
 
     # Ensure output directory exists
     import os
+
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
 
     fig.savefig(output_path, bbox_inches="tight")

@@ -7,8 +7,8 @@ from tqdm import tqdm
 from datagen.boss_loader.data_transforms import normalize_redshift
 from datagen.image_gen.geometry import (
     generate_non_overlapping_square,
-    rotate_coordinates,
     get_points_in_square,
+    rotate_coordinates,
 )
 from datagen.image_gen.rendering import create_image
 

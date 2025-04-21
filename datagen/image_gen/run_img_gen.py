@@ -1,13 +1,12 @@
 import logging
+
 from hydra import main
-from omegaconf import DictConfig
 from hydra.utils import to_absolute_path
+from omegaconf import DictConfig
 
 from datagen.boss_loader.main import prepare_boss_data
-from datagen.image_gen.sampler import random_sampling_images
 from datagen.image_gen.rendering import display_sample_dist
-
-
+from datagen.image_gen.sampler import random_sampling_images
 
 logger = logging.getLogger(__name__)
 
@@ -77,7 +76,6 @@ def run(cfg: DictConfig) -> None:
         out_dir,
     )
 
-
     if cfg.images.viz.enable:
         viz_out = to_absolute_path(cfg.images.viz.output_file)
         display_sample_dist(
@@ -85,13 +83,12 @@ def run(cfg: DictConfig) -> None:
             dec=coords.dec.deg,
             train_squares=training,
             test_squares=testing,
-            output_path=viz_out
+            output_path=viz_out,
         )
         logger.info("Saved sample‐distribution plot to %s", viz_out)
-
 
 
 if __name__ == "__main__":
     run()
 
-#TODO: Fix logic for generating non-overlapping squares
+# TODO: Fix logic for generating non-overlapping squares

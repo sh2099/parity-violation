@@ -1,18 +1,19 @@
 import logging
 from typing import Tuple
 
-import numpy as np
-from astropy.coordinates import SkyCoord, ICRS
 import astropy.units as u
+import numpy as np
+from astropy.coordinates import ICRS, SkyCoord
 
 logger = logging.getLogger(__name__)
+
 
 def filter_by_redshift(
     coords: SkyCoord,
     redshift: np.ndarray,
     weights: np.ndarray,
     z_min: float,
-    z_max: float
+    z_max: float,
 ) -> Tuple[SkyCoord, np.ndarray, np.ndarray]:
     """
     Filter galaxy sample by redshift range.
@@ -43,15 +44,12 @@ def filter_by_redshift(
     total = len(redshift)
     selected = mask.sum()
     logger.info(
-        "Filtering redshift: %d/%d galaxies in [%f, %f]", 
-        selected, total, z_min, z_max
+        "Filtering redshift: %d/%d galaxies in [%f, %f]", selected, total, z_min, z_max
     )
 
     # Apply mask
     coords_filt = SkyCoord(
-        ra=coords.ra[mask].to(u.degree),
-        dec=coords.dec[mask].to(u.degree),
-        frame=ICRS
+        ra=coords.ra[mask].to(u.degree), dec=coords.dec[mask].to(u.degree), frame=ICRS
     )
     return coords_filt, redshift[mask], weights[mask]
 

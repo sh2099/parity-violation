@@ -1,17 +1,15 @@
 import logging
-from typing import List, Tuple
+from typing import List
 
 import numpy as np
-from shapely.geometry import Polygon, Point
 from shapely import affinity, vectorized
+from shapely.geometry import Polygon
 
 logger = logging.getLogger(__name__)
 
 
 def rotate_coordinates(
-    coords: np.ndarray,
-    centre: np.ndarray,
-    phi: float
+    coords: np.ndarray, centre: np.ndarray, phi: float
 ) -> np.ndarray:
     """
     Rotate an array of 2D points by angle phi around a centre.
@@ -39,9 +37,7 @@ def rotate_coordinates(
 
 
 def get_points_in_square(
-    ra: np.ndarray,
-    dec: np.ndarray,
-    square: Polygon
+    ra: np.ndarray, dec: np.ndarray, square: Polygon
 ) -> np.ndarray:
     """
     Vectorized selection of points inside a shapely Polygon.
@@ -68,7 +64,7 @@ def generate_non_overlapping_square(
     centre: np.ndarray,
     square_size: float,
     phi: float,
-    existing: List[Polygon]
+    existing: List[Polygon],
 ) -> Polygon:
     """
     Create a rotated square polygon that does not intersect any in `existing`.
@@ -92,14 +88,17 @@ def generate_non_overlapping_square(
         A shapely Polygon for the non-overlapping square.
     """
     half = square_size / 2
+
     # define axis-aligned square
-    def make_square(c, angle):
-        base = Polygon([
-            (c[0] - half, c[1] - half),
-            (c[0] + half, c[1] - half),
-            (c[0] + half, c[1] + half),
-            (c[0] - half, c[1] + half),
-        ])
+    def make_square(c: np.ndarray, angle: float) -> Polygon:
+        base = Polygon(
+            [
+                (c[0] - half, c[1] - half),
+                (c[0] + half, c[1] - half),
+                (c[0] + half, c[1] + half),
+                (c[0] - half, c[1] + half),
+            ]
+        )
         return affinity.rotate(base, angle, origin=(c[0], c[1]))
 
     attempt = 0
@@ -107,7 +106,9 @@ def generate_non_overlapping_square(
     while any(square.intersects(ex) for ex in existing):
         attempt += 1
         if attempt % 50 == 0:
-            logger.debug("Still searching non-overlapping square after %d attempts", attempt)
+            logger.debug(
+                "Still searching non-overlapping square after %d attempts", attempt
+            )
         # choose new random centre and orientation
         idx = np.random.randint(len(ra))
         centre = np.array([ra[idx], dec[idx]])

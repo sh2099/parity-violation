@@ -1,9 +1,10 @@
-import hydra
-from omegaconf import DictConfig
 import logging
 
-from datagen.boss_loader.fits_io import import_data
+import hydra
+from omegaconf import DictConfig
+
 from datagen.boss_loader.data_transforms import filter_by_redshift
+from datagen.boss_loader.fits_io import import_data
 
 
 def prepare_boss_data(
@@ -12,7 +13,7 @@ def prepare_boss_data(
     random_seed: int,
     z_min: float,
     z_max: float,
-):
+) -> tuple:
     """
     Load, sample, and redshift‐filter BOSS data in one go.
     Returns: coords, redshift, weights
@@ -23,15 +24,17 @@ def prepare_boss_data(
         random_seed=random_seed,
     )
     coords, z, w = filter_by_redshift(
-        coords, z, w,
+        coords,
+        z,
+        w,
         z_min=z_min,
         z_max=z_max,
     )
     return coords, z, w
 
 
-
 logger = logging.getLogger(__name__)
+
 
 @hydra.main(config_path="../../configs/datagen", config_name="config")
 def main(cfg: DictConfig) -> None:
@@ -44,13 +47,16 @@ def main(cfg: DictConfig) -> None:
         z_max=cfg.data.z_range.max,
     )
 
-    #z_norm = normalize_redshift(z)
-    logger.info("Finished. %d galaxies in range %s–%s",
-                len(z), cfg.data.z_range.min, cfg.data.z_range.max)
+    # z_norm = normalize_redshift(z)
+    logger.info(
+        "Finished. %d galaxies in range %s–%s",
+        len(z),
+        cfg.data.z_range.min,
+        cfg.data.z_range.max,
+    )
 
     # (… further analysis, saving outputs, etc.)
 
 
 if __name__ == "__main__":
     main()
-
