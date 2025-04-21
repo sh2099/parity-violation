@@ -22,7 +22,7 @@ git clone git@github.com:sh2099/parity-violation.git
 cd parity-violation
 ```
 
-#### Install using Conda/Mamba/Micromamba (recommended)
+#### Install using Micromamba (/Conda/Mamba)
 
 For conda or mamba replace `micromamba` with `conda` or `mamba` below.
 
