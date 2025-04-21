@@ -1,13 +1,7 @@
 defaults:
   - _self_
+  - config
 
-data:
-  fits_file: data/galaxy_DR12v5_CMASS_North.fits
-  sample_size: 500000
-  random_seed: 42
-  z_range:
-    min: 0.43
-    max: 0.70
 
 images:
   num_test_samples: 24
