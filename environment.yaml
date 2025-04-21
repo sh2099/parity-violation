@@ -75,6 +75,7 @@ dependencies:
   - frozenlist=1.5.0=py313h8060acc_1
   - fsspec=2025.3.2=pyhd8ed1ab_0
   - gast=0.4.0=pyh9f0ad1d_0
+  - geos=3.13.1=h97f6797_0
   - gflags=2.2.2=h5888daf_1005
   - glog=0.7.1=hbabe93e_0
   - graphite2=1.3.13=h59595ed_1003
@@ -233,6 +234,7 @@ dependencies:
   - s2n=1.5.16=hba75a32_1
   - s3fs=2025.3.2=pyhd8ed1ab_0
   - scipy=1.15.2=py313h86fcf2b_0
+  - shapely=2.1.0=py313h576e190_0
   - six=1.17.0=pyhd8ed1ab_0
   - snappy=1.2.1=h8bd8927_1
   - sortedcontainers=2.4.0=pyhd8ed1ab_1
@@ -282,6 +284,11 @@ dependencies:
   - zstandard=0.23.0=py313h536fd9c_1
   - zstd=1.5.7=hb8e6e7a_2
   - pip:
+    - black==25.1.0
     - hydra-core==1.3.2
+    - tqdm==4.67.1
+    - pre-commit==2.20.0
+    - flake8==4.0.1
+    - flake8-annotations
 
 prefix: "/home/samhewson/micromamba/envs/parity_env"
