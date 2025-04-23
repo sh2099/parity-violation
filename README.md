@@ -10,7 +10,7 @@
   
 </div>
 
-This repository contains the foundations of the code used for my Master's project: searching for parity violations in the large scale structure of the Universe, using Unsupervised Learning.
+This repository contains the foundations of the code used for our paper: [An Unsupervised search for parity violation in the Large Scale Structure.](https://arxiv.org/abs/2410.16030)
 
 ## Installation
 
