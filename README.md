@@ -45,3 +45,16 @@ For now, I recommend saving any fits files into the data folder.
 
 Environment variables may be introduced later in construction.
 
+
+</div>
+
+## Generating Images
+
+```bash
+python -m datagen.image_gen.run_img_gen 
+```
+To change the number of images, I recommend first trying with the hydra call
+```bash
+python -m datagen.image_gen.run_img_gen images.num_test_samples=24 images.num_train_samples=96
+```
+Once initial testing is done, the default values can be changed in the `configs.datagen.image_gen.yaml`.
