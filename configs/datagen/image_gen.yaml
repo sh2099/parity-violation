@@ -9,7 +9,7 @@ images:
   square_size: 1
   img_size: 64
   bw_mode: false
-  output_dir: all_images
+  output_dir: all_images/dev_trials
   prefix: boss
   viz:
     enable: true
