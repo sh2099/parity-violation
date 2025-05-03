@@ -5,7 +5,7 @@ from hydra.utils import to_absolute_path
 from omegaconf import DictConfig
 
 from datagen.boss_loader.main import prepare_boss_data
-from datagen.image_gen.rendering import display_sample_dist
+from datagen.image_gen.rendering import display_sample_dist, get_unique_dir
 from datagen.image_gen.sampler import random_sampling_images
 
 logger = logging.getLogger(__name__)
@@ -35,7 +35,9 @@ def run(cfg: DictConfig) -> None:
     logger.info("Loaded %d galaxies after redshift filter", len(z))
 
     # resolve output directory
-    out_dir = to_absolute_path(cfg.images.output_dir)
+    requested = to_absolute_path(cfg.images.output_dir)
+    out_dir = get_unique_dir(requested)
+    logger.info("Output directory: %s", out_dir)
 
     # run sampler
     testing, test_scales = random_sampling_images(
@@ -48,7 +50,7 @@ def run(cfg: DictConfig) -> None:
         img_size=cfg.images.img_size,
         bw_mode=cfg.images.bw_mode,
         output_dir=out_dir,
-        prefix=f"{cfg.images.prefix}_train_",
+        prefix=f"{cfg.images.prefix}_test_",
     )
 
     logger.info(
@@ -67,7 +69,7 @@ def run(cfg: DictConfig) -> None:
         img_size=cfg.images.img_size,
         bw_mode=cfg.images.bw_mode,
         output_dir=out_dir,
-        prefix=f"{cfg.images.prefix}_test_",
+        prefix=f"{cfg.images.prefix}_train_",
         preexisting_squares=testing,
     )
     logger.info(

@@ -1,4 +1,5 @@
 import logging
+from pathlib import Path
 from typing import List, Tuple, Union
 
 import matplotlib.pyplot as plt
@@ -169,3 +170,21 @@ def display_sample_dist(
 
     fig.savefig(output_path, bbox_inches="tight")
     plt.close(fig)
+
+
+def get_unique_dir(path: str) -> str:
+    """
+    If `path` doesn’t exist, returns it.
+    Otherwise returns path_1, path_2, ... for the first non-existing one.
+    """
+    base = Path(path)
+    if not base.exists():
+        return str(base)
+
+    # try suffixes _1, _2, ...
+    i = 1
+    while True:
+        candidate = base.with_name(f"{base.name}_{i}")
+        if not candidate.exists():
+            return str(candidate)
+        i += 1
