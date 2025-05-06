@@ -6,7 +6,7 @@ defaults:
 images:
   num_test_samples: 24
   num_train_samples: 96
-  square_size: 1
+  square_size: 0.6
   img_size: 64
   bw_mode: false
   output_dir: all_images/dev_trials
