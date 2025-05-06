@@ -40,7 +40,7 @@ def run(cfg: DictConfig) -> None:
     logger.info("Output directory: %s", out_dir)
 
     # run sampler
-    testing, test_scales = random_sampling_images(
+    testing, test_scales, avg_n_test = random_sampling_images(
         ra=coords.ra.deg,
         dec=coords.dec.deg,
         redshift=z,
@@ -54,12 +54,13 @@ def run(cfg: DictConfig) -> None:
     )
 
     logger.info(
-        "Finished: generated %d testing images in %s",
+        "Finished: generated %d testing images in %s," "\n avg %d points/image",
         cfg.images.num_test_samples,
         out_dir,
+        avg_n_test,
     )
 
-    training, train_scales = random_sampling_images(
+    training, train_scales, avg_n_train = random_sampling_images(
         ra=coords.ra.deg,
         dec=coords.dec.deg,
         redshift=z,
@@ -73,9 +74,10 @@ def run(cfg: DictConfig) -> None:
         preexisting_squares=testing,
     )
     logger.info(
-        "Finished: generated %d training images in %s",
+        "Finished: generated %d training images in %s," "\n avg %d points/image",
         cfg.images.num_train_samples,
         out_dir,
+        avg_n_train,
     )
 
     if cfg.images.viz.enable:
@@ -92,5 +94,3 @@ def run(cfg: DictConfig) -> None:
 
 if __name__ == "__main__":
     run()
-
-# TODO: Fix logic for generating non-overlapping squares

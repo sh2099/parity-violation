@@ -58,6 +58,8 @@ def random_sampling_images(
         The list of square‑vertex arrays used (one per image).
     List[float]
         The list of scale factors returned by `create_image`.
+    Int
+        The average number of points per image.
     """
     # normalize redshift once
     norm_z = normalize_redshift(redshift)
@@ -67,6 +69,7 @@ def random_sampling_images(
 
     existing_squares: List[np.ndarray] = []
     scale_factors: List[float] = []
+    num_points: List[int] = []
 
     for i in tqdm(range(num_samples), desc="Generating images"):
         # 1) pick a random centre & orientation
@@ -82,6 +85,7 @@ def random_sampling_images(
 
         # 3) select & rotate points
         sel_idx = get_points_in_square(ra, dec, square)
+        num_points.append(len(sel_idx))
         pts = np.column_stack((ra[sel_idx], dec[sel_idx]))
         rotated = rotate_coordinates(pts, centre, -phi)
 
@@ -98,5 +102,7 @@ def random_sampling_images(
             bw=bw_mode,
         )
         scale_factors.append(scale)
+    # 5) Compute average number of points per image
+    avg_points = np.mean(np.array(num_points))
 
-    return existing_squares, scale_factors
+    return existing_squares, scale_factors, avg_points
