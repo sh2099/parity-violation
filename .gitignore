@@ -6,6 +6,8 @@
 /.hydra/*
 
 /all_images/*
+# Keep the demo images
+!all_images/demo_images/
 /plots/*
 
 # Byte-compiled / optimized / DLL files
