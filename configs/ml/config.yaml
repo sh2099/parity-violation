@@ -28,5 +28,5 @@ train:
 
 hardware:
   use_cuda:    false   # set true to try NVIDIA
-  use_directml: false  # set true on native Windows w/ DirectML
+  use_dml: false  # set true on native Windows w/ DirectML
   use_mps:     false   # set true on macOS
