@@ -8,3 +8,6 @@ exclude =
     .pytest_cache,
     build,
     dist
+
+[flake8-annotations]
+suppress-dummy-args = True
