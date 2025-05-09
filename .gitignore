@@ -10,6 +10,8 @@
 !all_images/demo_images/
 /plots/*
 
+/models/*
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

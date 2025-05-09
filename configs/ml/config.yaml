@@ -9,9 +9,9 @@ logging:
   level: INFO
 
 data:
-  base_dir: "../all_images"
-  test_subdir: "demo_images/test"
-  train_subdir: "demo_images/train"
+  base_dir: "all_images"
+  test_subdir: "dev_trials/test"
+  train_subdir: "dev_trials/train"
   mean: [30, 0.001, 28.4]
   std:  [65, 0.01,  47]
   img_size: 64
