@@ -2,12 +2,6 @@ name: parity_env
 channels:
   - conda-forge
 dependencies:
-  # CPU only pytorch
-  - pytorch
-  - torchvision
-  - torchaudio
-  - cpuonly
-  #
   - _libgcc_mutex=0.1=conda_forge
   - _openmp_mutex=4.5=2_gnu
   - aiobotocore=2.21.1=pyhd8ed1ab_0
