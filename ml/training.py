@@ -48,7 +48,7 @@ def evaluate(
             out_all.append(model(xb))
         out = torch.cat(out_all)
     frac_pos = (out > 0).float().mean().item()
-    logger.info("  Positive fraction: %.3f", frac_pos)
+    logger.info("  Positive fraction: %.5f", frac_pos)
     return frac_pos
 
 

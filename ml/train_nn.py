@@ -1,10 +1,11 @@
 import logging
 
+import rich
 from hydra import main
-from omegaconf import DictConfig, OmegaConf
+from omegaconf import DictConfig
 
 from ml.training import run_training
-from ml.utils import pick_device
+from ml.utils import dict_to_tree, pick_device
 
 logger = logging.getLogger(__name__)
 
@@ -12,7 +13,8 @@ logger = logging.getLogger(__name__)
 @main(config_path="../configs/ml", config_name="config")
 def cli(cfg: DictConfig) -> None:
     logging.basicConfig(level=cfg.logging.level)
-    logger.info("Starting neural‐net training with config:\n%s", OmegaConf.to_yaml(cfg))
+    logger.info("Starting neural‐net training with config:")
+    rich.print(dict_to_tree(cfg, guide_style="dim"))
 
     device = pick_device(
         use_cuda=cfg.hardware.use_cuda,

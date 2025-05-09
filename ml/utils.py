@@ -3,6 +3,8 @@ import platform
 from pathlib import Path
 
 import torch
+from omegaconf import DictConfig
+from rich.tree import Tree
 
 logger = logging.getLogger(__name__)
 
@@ -74,3 +76,19 @@ def pick_device(
     # 4) Fallback to CPU
     logger.info("Falling back to CPU")
     return torch.device("cpu")
+
+
+def dict_to_tree(
+    data: dict | DictConfig, tree: Tree = None, name: str = "Config", **tree_kwargs
+) -> Tree:
+    """Convert a nested dictionary to a Rich Tree."""
+    if tree is None:
+        tree = Tree(name, **tree_kwargs)
+
+    for key, value in data.items():
+        if isinstance(value, (dict, DictConfig)):
+            dict_to_tree(value, tree.add(f"[cyan]{key}[/cyan]"))
+        else:
+            tree.add(f"[yellow]{key}[/yellow]: {value}")
+
+    return tree
