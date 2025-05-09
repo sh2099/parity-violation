@@ -49,7 +49,7 @@ def run(cfg: DictConfig) -> None:
         square_size=cfg.images.square_size,
         img_size=cfg.images.img_size,
         bw_mode=cfg.images.bw_mode,
-        output_dir=out_dir,
+        output_dir=f"{out_dir}/test/test",
         prefix=f"{cfg.images.prefix}_test_",
     )
 
@@ -69,7 +69,7 @@ def run(cfg: DictConfig) -> None:
         square_size=cfg.images.square_size,
         img_size=cfg.images.img_size,
         bw_mode=cfg.images.bw_mode,
-        output_dir=out_dir,
+        output_dir=f"{out_dir}/train/train",
         prefix=f"{cfg.images.prefix}_train_",
         preexisting_squares=testing,
     )
