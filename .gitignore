@@ -11,6 +11,8 @@
 /plots/*
 
 /models/*
+/lightning_logs/*
+/models_lit/*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
