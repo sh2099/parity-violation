@@ -6,7 +6,11 @@
 /.hydra/*
 
 /all_images/*
+# Keep the demo images
+!all_images/demo_images/
 /plots/*
+
+/models/*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

@@ -1,0 +1,32 @@
+version_base: 1.3
+hydra:
+  job:
+    chdir: false
+  run:
+    dir: ${hydra:runtime.cwd}
+
+logging:
+  level: INFO
+
+data:
+  base_dir: "all_images"
+  test_subdir: "dev_trials/test"
+  train_subdir: "dev_trials/train"
+  mean: [30, 0.001, 28.4]
+  std:  [65, 0.01,  47]
+  img_size: 64
+
+
+train:
+  batch_size: 64
+  num_workers: 4
+  lr: 0.001
+  momentum: 0.9
+  epochs: 10
+  checkpoint_dir: "models"
+  flip_augment: true
+
+hardware:
+  use_cuda:    false   # set true to try NVIDIA
+  use_dml: false  # set true on native Windows w/ DirectML
+  use_mps:     false   # set true on macOS

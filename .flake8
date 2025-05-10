@@ -1,6 +1,6 @@
 [flake8]
 max-line-length = 88
-extend-ignore = E203, W503
+extend-ignore = E203, W503, ANN101, ANN003
 exclude =
     .git,
     __pycache__,
@@ -8,3 +8,6 @@ exclude =
     .pytest_cache,
     build,
     dist
+
+[flake8-annotations]
+suppress-dummy-args = True

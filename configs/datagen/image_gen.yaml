@@ -4,8 +4,8 @@ defaults:
 
 
 images:
-  num_test_samples: 24
-  num_train_samples: 96
+  num_test_samples: 2400
+  num_train_samples: 9600
   square_size: 0.6
   img_size: 64
   bw_mode: false
