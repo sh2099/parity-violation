@@ -62,3 +62,7 @@ Once initial testing is done, the default values can be changed in the `configs.
 </div>
 
 ## Training the model
+
+```bash
+python -m ml.train_nn
+```
