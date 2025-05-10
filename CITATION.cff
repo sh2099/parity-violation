@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Hewson"
+  given-names: "Samuel"
+  orcid: "https://orcid.org/0009-0000-5408-4762"
+title: "Unsupervised searches for parity violation"
+version: 1.0.0
+doi: 10.5281/zenodo.1234
+date-released: 2025-05-10
+url: "https://github.com/sh2099/parity-violation"
