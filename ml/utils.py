@@ -1,5 +1,4 @@
 import logging
-import platform
 from pathlib import Path
 
 import torch
@@ -54,6 +53,7 @@ def pick_device(
         return torch.device("cuda")
 
     # 2) DirectML (Windows only)
+    """
     if use_dml and platform.system() == "Windows":
         try:
             import torch_directml
@@ -63,7 +63,7 @@ def pick_device(
             return dml_dev
         except ImportError:
             logger.warning("torch-directml not installed; skipping DirectML")
-
+    """
     # 3) MPS (macOS only)
     if (
         use_mps
