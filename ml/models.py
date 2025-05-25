@@ -3,11 +3,16 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 
+def rotate_90(x: torch.Tensor) -> torch.Tensor:
+    return torch.flip(x, [2]).transpose(2, 3)
+
+
 def rotate_180(x: torch.Tensor) -> torch.Tensor:
     return torch.flip(x, [2, 3])
 
 
-# TODO: Maybe more rotations
+def rotate_270(x: torch.Tensor) -> torch.Tensor:
+    return torch.flip(x, [3]).transpose(2, 3)
 
 
 def x_flip(x: torch.Tensor) -> torch.Tensor:
@@ -32,6 +37,8 @@ class ParityNet(nn.Module):
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         # average the four parity‐transformed passes
+        # Note here, extra rotations could be added,
+        # But datagen automatically randomly rotates images
         out = (
             self._forward_once(x)
             + self._forward_once(rotate_180(x))
