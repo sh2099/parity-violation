@@ -12,7 +12,7 @@ class ParityLitDataModule(pl.LightningDataModule):
         super().__init__()
         self.cfg = cfg  # Hydra config object
 
-    def setup(self) -> None:
+    def setup(self, stage: str) -> None:
         # instantiate train_ds & test_ds
         mean = self.cfg.data.mean
         std = self.cfg.data.std
