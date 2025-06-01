@@ -1,10 +1,9 @@
 import logging
 
 import hydra
-from omegaconf import DictConfig
-
 from datagen.boss_loader.data_transforms import filter_by_redshift
 from datagen.boss_loader.fits_io import import_data
+from omegaconf import DictConfig
 
 
 def prepare_boss_data(

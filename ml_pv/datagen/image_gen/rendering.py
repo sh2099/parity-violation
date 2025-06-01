@@ -161,7 +161,7 @@ def display_sample_dist(
 
     ax.set_xlabel("RA (deg)")
     ax.set_ylabel("DEC (deg)")
-    ax.legend(loc="upper right", fontsize="small")
+    # ax.legend(loc="upper right", fontsize="small")
 
     # Ensure output directory exists
     import os

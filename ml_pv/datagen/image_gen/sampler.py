@@ -2,8 +2,6 @@ import os
 from typing import List, Tuple
 
 import numpy as np
-from tqdm import tqdm
-
 from datagen.boss_loader.data_transforms import normalize_redshift
 from datagen.image_gen.geometry import (
     generate_non_overlapping_square,
@@ -11,6 +9,7 @@ from datagen.image_gen.geometry import (
     rotate_coordinates,
 )
 from datagen.image_gen.rendering import create_image
+from tqdm import tqdm
 
 
 def random_sampling_images(

@@ -1,12 +1,11 @@
 import logging
 
-from hydra import main
-from hydra.utils import to_absolute_path
-from omegaconf import DictConfig
-
 from datagen.boss_loader.main import prepare_boss_data
 from datagen.image_gen.rendering import display_sample_dist, get_unique_dir
 from datagen.image_gen.sampler import random_sampling_images
+from hydra import main
+from hydra.utils import to_absolute_path
+from omegaconf import DictConfig
 
 logger = logging.getLogger(__name__)
 
