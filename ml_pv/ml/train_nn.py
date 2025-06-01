@@ -2,10 +2,9 @@ import logging
 
 import rich
 from hydra import main
-from omegaconf import DictConfig
-
 from ml.training import run_training
 from ml.utils import dict_to_tree, pick_device
+from omegaconf import DictConfig
 
 logger = logging.getLogger(__name__)
 

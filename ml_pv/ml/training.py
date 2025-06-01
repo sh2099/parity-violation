@@ -3,11 +3,10 @@ from pathlib import Path
 
 import torch
 import torch.optim as optim
-from omegaconf import DictConfig
-from torch.utils.data import DataLoader
-
 from ml.data import get_transforms, load_datasets, make_loaders
 from ml.models import ParityNet
+from omegaconf import DictConfig
+from torch.utils.data import DataLoader
 
 logger = logging.getLogger(__name__)
 
