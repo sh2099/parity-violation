@@ -1,11 +1,12 @@
 import logging
 
-from datagen.boss_loader.main import prepare_boss_data
-from datagen.image_gen.rendering import display_sample_dist, get_unique_dir
-from datagen.image_gen.sampler import random_sampling_images
 from hydra import main
 from hydra.utils import to_absolute_path
 from omegaconf import DictConfig
+
+from ml_pv.datagen.boss_loader.main import prepare_boss_data
+from ml_pv.datagen.image_gen.rendering import display_sample_dist, get_unique_dir
+from ml_pv.datagen.image_gen.sampler import random_sampling_images
 
 logger = logging.getLogger(__name__)
 

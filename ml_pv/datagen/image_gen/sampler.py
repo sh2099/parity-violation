@@ -2,14 +2,15 @@ import os
 from typing import List, Tuple
 
 import numpy as np
-from datagen.boss_loader.data_transforms import normalize_redshift
-from datagen.image_gen.geometry import (
+from tqdm import tqdm
+
+from ml_pv.datagen.boss_loader.data_transforms import normalize_redshift
+from ml_pv.datagen.image_gen.geometry import (
     generate_non_overlapping_square,
     get_points_in_square,
     rotate_coordinates,
 )
-from datagen.image_gen.rendering import create_image
-from tqdm import tqdm
+from ml_pv.datagen.image_gen.rendering import create_image
 
 
 def random_sampling_images(
