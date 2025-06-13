@@ -36,6 +36,7 @@ def import_data(
         Computed weights for each sampled galaxy.
     """
     rng = np.random.default_rng(random_seed)
+    # Open fits and extract the data table
     with fits.open(fits_file) as hdul:
         table = hdul[1].data
         total = len(table)

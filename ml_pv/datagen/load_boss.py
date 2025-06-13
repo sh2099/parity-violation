@@ -15,7 +15,7 @@ def prepare_boss_data(
     z_max: float,
 ) -> tuple:
     """
-    Load, sample, and redshift‐filter BOSS data in one go.
+    Load, sample, and redshift‐filter BOSS data.
     Returns: coords, redshift, weights
     """
     coords, z, w = import_data(
@@ -36,8 +36,13 @@ def prepare_boss_data(
 logger = logging.getLogger(__name__)
 
 
-@hydra.main(config_path="../../configs/datagen", config_name="config")
+@hydra.main(
+    version_base="1.3", config_path="../../configs/datagen", config_name="config"
+)
 def main(cfg: DictConfig) -> None:
+    """
+    Test the BOSS data loading and redshift filtering.
+    """
     logger.info("Starting BOSS data pipeline…")
     coords, z, w = prepare_boss_data(
         fits_file=cfg.data.fits_file,
@@ -54,8 +59,6 @@ def main(cfg: DictConfig) -> None:
         cfg.data.z_range.min,
         cfg.data.z_range.max,
     )
-
-    # (… further analysis, saving outputs, etc.)
 
 
 if __name__ == "__main__":

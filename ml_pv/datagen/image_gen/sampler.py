@@ -32,9 +32,9 @@ def random_sampling_images(
     Parameters
     ----------
     ra : np.ndarray, shape (N,)
-        Right ascension of all galaxies.
+        Right ascension of galaxies.
     dec : np.ndarray, shape (N,)
-        Declination of all galaxies.
+        Declination of galaxies.
     redshift : np.ndarray, shape (N,)
         Galaxy redshifts.
     weights : np.ndarray, shape (N,)
@@ -51,6 +51,9 @@ def random_sampling_images(
         Directory to save PNGs into.
     prefix : str
         Filename prefix for each image (e.g. “boss” → boss_0.png, …).
+    preexisting_squares : List[np.ndarray], optional
+        List of preexisting square‑vertex arrays to avoid overlap with.
+        Defaults to an empty list.
 
     Returns
     -------
@@ -61,7 +64,7 @@ def random_sampling_images(
     Int
         The average number of points per image.
     """
-    # normalize redshift once
+    # normalize redshift
     norm_z = normalize_redshift(redshift)
 
     # ensure output directory exists

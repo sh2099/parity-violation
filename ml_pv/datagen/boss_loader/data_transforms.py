@@ -56,7 +56,7 @@ def filter_by_redshift(
 
 def normalize_redshift(redshift: np.ndarray) -> np.ndarray:
     """
-    Normalize redshift values to the [0, 1] interval.
+    Normalise redshift values to the [0, 1] interval.
 
     Parameters
     ----------
@@ -65,7 +65,7 @@ def normalize_redshift(redshift: np.ndarray) -> np.ndarray:
 
     Returns
     -------
-    normalized : np.ndarray
+    normalised : np.ndarray
         Redshifts scaled to [0, 1].
     """
     z_min = redshift.min()

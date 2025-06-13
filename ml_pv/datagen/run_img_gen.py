@@ -4,26 +4,27 @@ from hydra import main
 from hydra.utils import to_absolute_path
 from omegaconf import DictConfig
 
-from ml_pv.datagen.boss_loader.main import prepare_boss_data
 from ml_pv.datagen.image_gen.rendering import display_sample_dist, get_unique_dir
 from ml_pv.datagen.image_gen.sampler import random_sampling_images
+from ml_pv.datagen.load_boss import prepare_boss_data
 
 logger = logging.getLogger(__name__)
 
 
-@main(config_path="../../configs/datagen", config_name="image_gen")
+@main(version_base="1.3", config_path="../../configs/datagen", config_name="image_gen")
 def run(cfg: DictConfig) -> None:
     """
-    Entry point for BOSS image generation.
-
-    Reads FITS via boss_processing, filters by redshift, then
-    invokes the sampler to produce a set of non‑overlapping images.
+    Run the image generation pipeline for BOSS data.
+    - Set up logging.
+    - Load and filter BOSS data based on redshift.
+    - Generate training and testing images using random sampling.
+    - Create visualisation the distribution of samples.
     """
     # set up logging
     logging.basicConfig(level=cfg.logging.level)
     logger.info("Starting image generation pipeline")
 
-    # resolve & load data
+    # load data
     fits_path = to_absolute_path(cfg.data.fits_file)
     coords, z, w = prepare_boss_data(
         fits_file=fits_path,
@@ -39,8 +40,8 @@ def run(cfg: DictConfig) -> None:
     out_dir = get_unique_dir(requested)
     logger.info("Output directory: %s", out_dir)
 
-    # run sampler
-    testing, test_scales, avg_n_test = random_sampling_images(
+    # run image sampler
+    testing, _, avg_n_test = random_sampling_images(
         ra=coords.ra.deg,
         dec=coords.dec.deg,
         redshift=z,
@@ -60,7 +61,7 @@ def run(cfg: DictConfig) -> None:
         avg_n_test,
     )
 
-    training, train_scales, avg_n_train = random_sampling_images(
+    training, _, avg_n_train = random_sampling_images(
         ra=coords.ra.deg,
         dec=coords.dec.deg,
         redshift=z,
