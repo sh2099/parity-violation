@@ -48,6 +48,14 @@ Environment variables may be introduced later in construction.
 
 </div>
 
+## Jupyter Notebook Demonstration
+
+The Notebook ml_pv/demo.ipynb has been created to walk through the process step by step, so is a good place to start.\
+The hydra setup can then be used for more efficient modular handling.
+
+
+</div>
+
 ## Generating Images
 
 ```bash
