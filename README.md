@@ -50,7 +50,7 @@ Environment variables may be introduced later in construction.
 
 ## Jupyter Notebook Demonstration
 
-The Notebook ml_pv/demo.ipynb has been created to walk through the process step by step, so is a good place to start.\
+The Notebook [ml_pv/demo.ipynb](https://github.com/sh2099/parity-violation/blob/main/ml_pv/demo.ipynb) has been created to walk through the process step by step, so is a good place to start.\
 The hydra setup can then be used for more efficient modular handling.
 
 
