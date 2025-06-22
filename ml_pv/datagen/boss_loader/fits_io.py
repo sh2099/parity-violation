@@ -12,7 +12,7 @@ logger = logging.getLogger(__name__)
 
 
 def import_data(
-    fits_file: str, sample_size: int, random_seed: int | None = None
+    fits_file: str, sample_size: int = None, random_seed: int | None = None
 ) -> Tuple[SkyCoord, np.ndarray, np.ndarray]:
     """
     Load galaxy coordinates, redshifts, and weights from a BOSS FITS file.
@@ -40,6 +40,13 @@ def import_data(
     with fits.open(fits_file) as hdul:
         table = hdul[1].data
         total = len(table)
+        if sample_size is None or sample_size > total:
+            sample_size = total
+            logger.warning(
+                "Sample size %d exceeds total entries %d. Using all entries.",
+                sample_size,
+                total,
+            )
         idx = rng.choice(total, sample_size, replace=False)
         subset = table[idx]
 
